@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectToDB = async () => {
     const connectionUrl =
-        "mongodb://localhost:27017/nextjs-tutorial";
+        "mongodb://localhost:27017/blogNextJs"
 
     mongoose
         .connect(connectionUrl)
@@ -10,4 +10,4 @@ const connectToDB = async () => {
         .catch((error) => console.log(error));
 };
 
-export default connectToDB; w
+export default connectToDB; 

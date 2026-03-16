@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog App – Next.js
 
-## Getting Started
+A simple **Blog Management Application** built with Next.js using the App Router.
+This project allows users to create, view, update, and delete blog posts through API routes.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tech Stack
+
+* Next.js (App Router)
+* React
+* MongoDB
+* Mongoose
+* Joi (Validation)
+* Tailwind CSS
+* shadcn/ui components
+
+---
+
+## 📁 Project Structure
+
+```
+src
+ ├── app
+ │   ├── api
+ │   │   ├── add-blog
+ │   │   │   └── route.js
+ │   │   ├── delete-blog
+ │   │   │   └── route.js
+ │   │   ├── get-blogs
+ │   │   │   └── route.js
+ │   │   └── update-blog
+ │   │       └── route.js
+ │   ├── blogs
+ │   │   └── page.js
+ │   ├── favicon.ico
+ │   ├── globals.css
+ │   ├── layout.js
+ │   └── page.js
+ │
+ ├── components
+ │   ├── add-new-blog
+ │   │   └── index.js
+ │   ├── blog-overview
+ │   │   └── index.js
+ │   └── ui
+ │       ├── button.jsx
+ │       ├── card.jsx
+ │       ├── dialog.jsx
+ │       ├── input.jsx
+ │       └── label.jsx
+ │
+ ├── database
+ │   └── index.js
+ │
+ ├── lib
+ │   └── utils.js
+ │
+ └── models
+     └── blog.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## ⚙️ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* Add new blog posts
+* View all blogs
+* Update existing blogs
+* Delete blogs
+* Form validation using Joi
+* MongoDB database integration
+* Reusable UI components with shadcn/ui
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔌 API Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Method | Endpoint           | Description       |
+| ------ | ------------------ | ----------------- |
+| POST   | `/api/add-blog`    | Create a new blog |
+| GET    | `/api/get-blogs`   | Fetch all blogs   |
+| PUT    | `/api/update-blog` | Update a blog     |
+| DELETE | `/api/delete-blog` | Delete a blog     |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🗄 Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MongoDB is used as the database and connected using Mongoose.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example schema:
+
+```js
+import mongoose from "mongoose";
+
+const blogSchema = new mongoose.Schema({
+  title: String,
+  description: String
+});
+
+const Blog = mongoose.models.Blog || mongoose.model("Blog", blogSchema);
+
+export default Blog;
+```
+
+---
+
+## ▶️ Running the Project
+
+Install dependencies:
+
+```
+npm install
+```
+
+Run development server:
+
+```
+npm run dev
+```
+
+Open in browser:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📌 Pages
+
+| Route    | Description          |
+| -------- | -------------------- |
+| `/`      | Homepage             |
+| `/blogs` | Blog management page |
+
+---
+
+## 📦 Components
+
+* **Add New Blog** – Form to create blog posts
+* **Blog Overview** – Displays list of blogs
+* **UI Components** – Button, Card, Dialog, Input, Label
+
+---
+
+## 🧠 Learning Purpose
+
+This project demonstrates:
+
+* Next.js App Router API routes
+* CRUD operations with MongoDB
+* Form validation with Joi
+* Component-based architecture
+* Reusable UI components with shadcn/ui
+
+---
+
+## 👨‍💻 Author
+
+Karthik Chary

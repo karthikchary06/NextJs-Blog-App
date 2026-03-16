@@ -1,35 +1,30 @@
 import connectToDB from "@/database";
+import Blog from "@/models/blog";
 import Joi from "joi";
 import { NextResponse } from "next/server";
-import Blog from "@/models/blog";
-
 
 const AddNewBlog = Joi.object({
     title: Joi.string().required(),
-    description: Joi.string().required()
-})
-
-
-
-
-
+    description: Joi.string().required(),
+});
 
 export async function POST(req) {
     try {
-        await connectToDB()
-        const extractBlogData = req.json()
-        const { title, description } = extractBlogData
+        await connectToDB();
+
+        const extractBlogData = await req.json();
+        const { title, description } = extractBlogData;
 
         const { error } = AddNewBlog.validate({
             title,
-            description
-        })
+            description,
+        });
 
         if (error) {
             return NextResponse.json({
                 success: false,
-                message: error.details[0].message
-            })
+                message: error.details[0].message,
+            });
         }
 
         const newlyCreatedBlogItem = await Blog.create(extractBlogData);
